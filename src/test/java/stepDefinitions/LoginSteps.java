@@ -11,9 +11,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
-public class ExampleSteps {
+public class LoginSteps {
 
-    private WebDriver driver; // private = restricted access
+    private WebDriver driver; //restricted access
 
     // Getter
     public WebDriver getDriver() {
@@ -49,14 +49,11 @@ public class ExampleSteps {
     public  WebDriver nonHeadlessDriver() {
 
         if(driver == null) {
-            // Set the path to the ChromeDriver executable
             System.setProperty("webdriver.chrome.driver", "C:\\Users\\Jessi\\OneDrive\\Desktop\\Test_Automation\\Drivers\\chromedriver_win32\\chromedriver.exe");
 
-            // Set up ChromeOptions without the headless argument
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--remote-allow-origins=*");  // Allow WebSocket connections
+            options.addArguments("--remote-allow-origins=*");
 
-            // Initialize WebDriver with ChromeOptions in non-headless mode
             driver = new ChromeDriver(options);
             setDriver(driver);
         }
@@ -81,9 +78,8 @@ public class ExampleSteps {
 
     @Then("The submit button is displayed")
     public void the_submit_button_is_displayed() {
-        i_fill_out_the_login_form();
         nonHeadlessDriver().findElement(By.xpath("//*[@id=\"loginPanel\"]/form/div[3]/input")).isDisplayed();
-        nonHeadlessDriver().quit();
+       // nonHeadlessDriver().quit();
     }
 
 }
